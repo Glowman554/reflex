@@ -13,6 +13,10 @@ public class ReflexJsonLoader implements ReflexDataLoader {
 		this.json = Json.json().parse(json);
 	}
 
+	public ReflexJsonLoader(JsonNode json) {
+		this.json = json;
+	}
+
 	@Override
 	public String load_string(String field_name) {
 		return this.resolve(field_name).asString();
