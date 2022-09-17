@@ -32,6 +32,7 @@ public class Test {
 	public TestInner inner = new TestInner(); // Subclasses need to be
 	// instantiated and not null
 
+	@SuppressWarnings("unchecked")
 	@ReflexField
 	public ReflexCustomArray<TestInner> inner_array = ReflexCustomArray.from(() -> new TestInner());
 	

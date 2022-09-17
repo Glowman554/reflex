@@ -10,8 +10,9 @@ public class ReflexCustomArray<T> implements ReflexArray<T> {
 		this.instantiate = instantiate;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static ReflexCustomArray from(Instantiate i) {
-		return new ReflexCustomArray(i);
+		return new ReflexCustomArray<>(i);
 	}
 
 	@Override

@@ -25,6 +25,7 @@ public class Reflex {
 		this.handlers.put(ReflexBooleanArray.class, (field, loaders, __) -> new ReflexBooleanArray(loaders.load_boolean_array(field)));
 
 		this.handlers.put(ReflexCustomArray.class, (field, loaders, o) -> {
+			@SuppressWarnings("unchecked")
 			ReflexCustomArray<Object> rca = (ReflexCustomArray<Object>) o;
 
 			rca.array(loaders.load_custom_array(field, rca.getInstantiate()));
