@@ -131,6 +131,20 @@ public class ReflexCfgLoader implements ReflexDataLoader
 					}
 					else
 					{
+						if (value.charAt(0) == '"')
+						{
+							value = value.substring(1);
+
+							if (value.charAt(value.length() - 1) == '"')
+							{
+								value = value.substring(0, value.length() - 1);
+							}
+							else
+							{
+								throw new IllegalStateException("String must start and end with \" or just remove the \" altogether!");
+							}
+						}
+
 						node = JsonNode.string(value);
 					}
 				}

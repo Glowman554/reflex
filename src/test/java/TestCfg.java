@@ -12,7 +12,7 @@ import net.shadew.json.JsonSyntaxException;
 
 public class TestCfg
 {
-	public static String test_cfg = "\ntest_string=hello world\ntest_string_array=[\"hello\", \"world\"]\n\ntest_int=123\ntest_int_array=[1,2,3]\n\ntest_long=123\ntest_long_array=[1,2,3]\n\ntest_double=1.2\ntest_double_array=[1.2,3.4,5.6]\n\ntest_boolean=true\ntest_boolean_array=[true, false, true]\n\n:other_section\nin_section=hewoo";
+	public static String test_cfg = "\ntest_string=\"hello world\"\ntest_string_array=[\"hello\", \"world\"]\n\ntest_int=123\ntest_int_array=[1,2,3]\n\ntest_long=123\ntest_long_array=[1,2,3]\n\ntest_double=1.2\ntest_double_array=[1.2,3.4,5.6]\n\ntest_boolean=true\ntest_boolean_array=[true, false, true]\n\n:other_section\nin_section=hewoo";
 
 	@ReflexField
 	public RootSection root = new RootSection();
