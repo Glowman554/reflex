@@ -49,6 +49,18 @@ public class ReflexJsonLoader implements ReflexDataLoader {
 	}
 
 	@Override
+	public long load_long(String field_name)
+	{
+		return this.resolve(field_name).asLong();
+	}
+
+	@Override
+	public long[] load_long_array(String field_name)
+	{
+		return this.resolve(field_name).asLongArray();
+	}
+	
+	@Override
 	public boolean load_boolean(String field_name) {
 		return this.resolve(field_name).asBoolean();
 	}

@@ -7,7 +7,7 @@ import net.shadew.json.JsonSyntaxException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Test {
-	public static final String test_json = "{\"test_string\":\"hello world\",\"test_string_array\":[\"hello\",\"world\"],\"test_int\":123,\"test_int_array\":[1,2,3],\"inner\":{\"test_inner\":\"inner\"},\"test_double\":1.2,\"test_double_array\":[1.2,3.4,5.6],\"test_boolean\":true,\"test_boolean_array\":[true,false,true],\"inner_array\":[{\"test_inner\":\"test1\"},{\"test_inner\":\"test2\"},{\"test_inner\":\"test3\"}]}";
+	public static final String test_json = "{\"test_string\":\"hello world\",\"test_string_array\":[\"hello\",\"world\"],\"test_int\":123,\"test_int_array\":[1,2,3],\"test_long\":123,\"test_long_array\":[1,2,3],\"inner\":{\"test_inner\":\"inner\"},\"test_double\":1.2,\"test_double_array\":[1.2,3.4,5.6],\"test_boolean\":true,\"test_boolean_array\":[true,false,true],\"inner_array\":[{\"test_inner\":\"test1\"},{\"test_inner\":\"test2\"},{\"test_inner\":\"test3\"}]}";
 	@ReflexField
 	public String test_string;
 	@ReflexField
@@ -17,6 +17,11 @@ public class Test {
 	public int test_int;
 	@ReflexField
 	public ReflexIntArray test_int_array;
+	
+	@ReflexField
+	public long test_long;
+	@ReflexField
+	public ReflexLongArray test_long_array;
 
 	@ReflexField
 	public double test_double;
@@ -47,6 +52,7 @@ public class Test {
 		assertEquals(null, t.not_in_json);
 		assertEquals("hello world", t.test_string);
 		assertEquals(123, t.test_int);
+		assertEquals(123, t.test_long);
 		assertEquals(1.2, t.test_double);
 		assertEquals(true, t.test_boolean);
 		assertEquals("inner", t.inner.test_inner);

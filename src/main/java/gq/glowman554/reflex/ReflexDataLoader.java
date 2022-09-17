@@ -10,6 +10,10 @@ public interface ReflexDataLoader {
 	int load_int(String field_name);
 
 	int[] load_int_array(String field_name);
+	
+	long load_long(String field_name);
+	
+	long[] load_long_array(String field_name);
 
 	double load_double(String field_name);
 

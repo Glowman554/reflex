@@ -17,6 +17,9 @@ public class Reflex {
 
 		this.handlers.put(int.class, (field, loaders, __) -> loaders.load_int(field));
 		this.handlers.put(ReflexIntArray.class, (field, loaders, __) -> new ReflexIntArray(loaders.load_int_array(field)));
+		
+		this.handlers.put(long.class, (field, loaders, __) -> loaders.load_long(field));
+		this.handlers.put(ReflexLongArray.class, (field, loaders, __) -> new ReflexLongArray(loaders.load_long_array(field)));
 
 		this.handlers.put(double.class, (field, loaders, __) -> loaders.load_double(field));
 		this.handlers.put(ReflexDoubleArray.class, (field, loaders, __) -> new ReflexDoubleArray(loaders.loas_double_array(field)));
