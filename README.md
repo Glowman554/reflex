@@ -12,6 +12,7 @@ Load json into a Java class using the reflection api.
 - ReflexBooleanArray
 - ReflexStringArray
 - ReflexIntArray
+- ReflexCustomArray
 
 You can use a custom class as a datatype too. The class needs to contain @ReflexFiled's, and it needs to be != null
 
