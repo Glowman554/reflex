@@ -44,4 +44,4 @@ public class Main {
 }
 ```
 
-A full example can be found [here](https://github.com/Glowman554/reflex/blob/main/src/test/java/Test.java).
+A full example can be found [here](https://github.com/Glowman554/reflex/blob/main/src/test/java/TestJson.java).
