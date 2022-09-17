@@ -47,6 +47,26 @@ public class Reflex {
 
 	public Object load(Object o, String load_prefix) throws IllegalArgumentException, IllegalAccessException {
 		Class<?> clazz = o.getClass();
+		
+		for (var f : clazz.getDeclaredFields())
+		{
+			if (f.isAnnotationPresent(ReflexField.class) && f.getName().equals("$")) {
+				var h = this.handlers.get(f.getType());
+				String load_name = load_prefix;
+				
+				if (Reflex.debug)
+					System.out.printf("[REFLEX] Found pure array type %s@%s\n", load_name, f.getType().getName());
+				
+				if (h == null)
+				{
+					throw new IllegalStateException("Pure array type needs a handler!");
+				}
+				
+				f.set(o, h.load(load_name, this.loader, f.get(o)));
+				
+				return o;
+			}
+		}
 
 		for (var f : clazz.getDeclaredFields()) {
 			if (f.isAnnotationPresent(ReflexField.class)) {
