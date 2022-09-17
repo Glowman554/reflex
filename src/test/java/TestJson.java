@@ -6,7 +6,7 @@ import net.shadew.json.JsonSyntaxException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Test {
+public class TestJson {
 	public static final String test_json = "{\"test_string\":\"hello world\",\"test_string_array\":[\"hello\",\"world\"],\"test_int\":123,\"test_int_array\":[1,2,3],\"test_long\":123,\"test_long_array\":[1,2,3],\"inner\":{\"test_inner\":\"inner\"},\"test_double\":1.2,\"test_double_array\":[1.2,3.4,5.6],\"test_boolean\":true,\"test_boolean_array\":[true,false,true],\"inner_array\":[{\"test_inner\":\"test1\"},{\"test_inner\":\"test2\"},{\"test_inner\":\"test3\"}]}";
 	@ReflexField
 	public String test_string;
@@ -47,7 +47,7 @@ public class Test {
 	@org.junit.jupiter.api.Test
 	public void test1() throws JsonSyntaxException, IllegalAccessException {
 		Reflex.setDebug(true);
-		Test t = (Test) new Reflex(new ReflexJsonLoader(test_json)).load(new Test());
+		TestJson t = (TestJson) new Reflex(new ReflexJsonLoader(test_json)).load(new TestJson());
 
 		assertEquals(null, t.not_in_json);
 		assertEquals("hello world", t.test_string);
