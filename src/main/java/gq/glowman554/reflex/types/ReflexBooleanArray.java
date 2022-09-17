@@ -20,4 +20,10 @@ public class ReflexBooleanArray implements ReflexArray<Boolean> {
 				"arr=" + Arrays.toString(arr) +
 				'}';
 	}
+
+	@Override
+	public int len()
+	{
+		return arr.length;
+	}
 }

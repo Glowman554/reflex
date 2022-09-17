@@ -20,4 +20,10 @@ public class ReflexIntArray implements ReflexArray<Integer> {
 				"arr=" + Arrays.toString(arr) +
 				'}';
 	}
+
+	@Override
+	public int len()
+	{
+		return arr.length;
+	}
 }

@@ -22,4 +22,10 @@ public class ReflexLongArray implements ReflexArray<Long>
 	{
 		return "ReflexIntArray{" + "arr=" + Arrays.toString(arr) + '}';
 	}
+
+	@Override
+	public int len()
+	{
+		return arr.length;
+	}
 }

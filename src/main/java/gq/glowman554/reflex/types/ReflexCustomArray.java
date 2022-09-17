@@ -39,4 +39,10 @@ public class ReflexCustomArray<T> implements ReflexArray<T> {
 	public interface Instantiate {
 		Object init();
 	}
+
+	@Override
+	public int len()
+	{
+		return arr.length;
+	}
 }
