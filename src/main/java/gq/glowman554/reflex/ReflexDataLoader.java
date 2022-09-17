@@ -1,5 +1,7 @@
 package gq.glowman554.reflex;
 
+import gq.glowman554.reflex.types.ReflexCustomArray;
+
 public interface ReflexDataLoader {
 	String load_string(String field_name);
 
@@ -16,4 +18,6 @@ public interface ReflexDataLoader {
 	boolean load_boolean(String field_name);
 
 	boolean[] load_boolean_array(String field_name);
+
+	Object[] load_custom_array(String field, ReflexCustomArray.Instantiate instantiate);
 }

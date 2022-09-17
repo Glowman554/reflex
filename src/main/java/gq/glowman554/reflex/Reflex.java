@@ -1,9 +1,6 @@
 package gq.glowman554.reflex;
 
-import gq.glowman554.reflex.types.ReflexBooleanArray;
-import gq.glowman554.reflex.types.ReflexDoubleArray;
-import gq.glowman554.reflex.types.ReflexIntArray;
-import gq.glowman554.reflex.types.ReflexStringArray;
+import gq.glowman554.reflex.types.*;
 
 import java.util.HashMap;
 
@@ -15,17 +12,25 @@ public class Reflex {
 	public Reflex(ReflexDataLoader loader) {
 		this.loader = loader;
 
-		this.handlers.put(String.class, (field, loaders) -> loaders.load_string(field));
-		this.handlers.put(ReflexStringArray.class, (field, loaders) -> new ReflexStringArray(loaders.load_string_array(field)));
+		this.handlers.put(String.class, (field, loaders, __) -> loaders.load_string(field));
+		this.handlers.put(ReflexStringArray.class, (field, loaders, __) -> new ReflexStringArray(loaders.load_string_array(field)));
 
-		this.handlers.put(int.class, (field, loaders) -> loaders.load_int(field));
-		this.handlers.put(ReflexIntArray.class, (field, loaders) -> new ReflexIntArray(loaders.load_int_array(field)));
+		this.handlers.put(int.class, (field, loaders, __) -> loaders.load_int(field));
+		this.handlers.put(ReflexIntArray.class, (field, loaders, __) -> new ReflexIntArray(loaders.load_int_array(field)));
 
-		this.handlers.put(double.class, (field, loaders) -> loaders.load_double(field));
-		this.handlers.put(ReflexDoubleArray.class, (field, loaders) -> new ReflexDoubleArray(loaders.loas_double_array(field)));
+		this.handlers.put(double.class, (field, loaders, __) -> loaders.load_double(field));
+		this.handlers.put(ReflexDoubleArray.class, (field, loaders, __) -> new ReflexDoubleArray(loaders.loas_double_array(field)));
 
-		this.handlers.put(boolean.class, (field, loaders) -> loaders.load_boolean(field));
-		this.handlers.put(ReflexBooleanArray.class, (field, loaders) -> new ReflexBooleanArray(loaders.load_boolean_array(field)));
+		this.handlers.put(boolean.class, (field, loaders, __) -> loaders.load_boolean(field));
+		this.handlers.put(ReflexBooleanArray.class, (field, loaders, __) -> new ReflexBooleanArray(loaders.load_boolean_array(field)));
+
+		this.handlers.put(ReflexCustomArray.class, (field, loaders, o) -> {
+			ReflexCustomArray<Object> rca = (ReflexCustomArray<Object>) o;
+
+			rca.array(loaders.load_custom_array(field, rca.getInstantiate()));
+
+			return rca;
+		});
 	}
 
 	public static boolean getDebug() {
@@ -49,7 +54,7 @@ public class Reflex {
 
 				try {
 					if (h != null) {
-						f.set(o, h.load(load_name, this.loader));
+						f.set(o, h.load(load_name, this.loader, f.get(o)));
 					} else {
 						f.set(o, this.load(f.get(o), load_name));
 					}

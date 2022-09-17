@@ -1,16 +1,13 @@
 import gq.glowman554.reflex.Reflex;
 import gq.glowman554.reflex.ReflexField;
 import gq.glowman554.reflex.loaders.ReflexJsonLoader;
-import gq.glowman554.reflex.types.ReflexBooleanArray;
-import gq.glowman554.reflex.types.ReflexDoubleArray;
-import gq.glowman554.reflex.types.ReflexIntArray;
-import gq.glowman554.reflex.types.ReflexStringArray;
+import gq.glowman554.reflex.types.*;
 import net.shadew.json.JsonSyntaxException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Test {
-	public static final String test_json = "{\"test_string\":\"hello world\",\"test_string_array\":[\"hello\",\"world\"],\"test_int\":123,\"test_int_array\":[1,2,3],\"inner\":{\"test_inner\":\"inner\"},\"test_double\":1.2,\"test_double_array\":[1.2,3.4,5.6],\"test_boolean\":true,\"test_boolean_array\":[true,false,true]}";
+	public static final String test_json = "{\"test_string\":\"hello world\",\"test_string_array\":[\"hello\",\"world\"],\"test_int\":123,\"test_int_array\":[1,2,3],\"inner\":{\"test_inner\":\"inner\"},\"test_double\":1.2,\"test_double_array\":[1.2,3.4,5.6],\"test_boolean\":true,\"test_boolean_array\":[true,false,true],\"inner_array\":[{\"test_inner\":\"test1\"},{\"test_inner\":\"test2\"},{\"test_inner\":\"test3\"}]}";
 	@ReflexField
 	public String test_string;
 	@ReflexField
@@ -34,11 +31,15 @@ public class Test {
 	@ReflexField
 	public TestInner inner = new TestInner(); // Subclasses need to be
 	// instantiated and not null
+
+	@ReflexField
+	public ReflexCustomArray inner_array = ReflexCustomArray.from(() -> new TestInner());
 	@ReflexField(optional = true)
 	public String not_in_json;
 
 	@org.junit.jupiter.api.Test
 	public void test1() throws JsonSyntaxException, IllegalAccessException {
+		Reflex.setDebug(true);
 		Test t = (Test) new Reflex(new ReflexJsonLoader(test_json)).load(new Test());
 
 		assertEquals(null, t.not_in_json);
@@ -47,6 +48,25 @@ public class Test {
 		assertEquals(1.2, t.test_double);
 		assertEquals(true, t.test_boolean);
 		assertEquals("inner", t.inner.test_inner);
+
+		System.out.println(t);
+	}
+
+	@Override
+	public String toString() {
+		return "Test{" +
+				"test_string='" + test_string + '\'' +
+				", test_string_array=" + test_string_array +
+				", test_int=" + test_int +
+				", test_int_array=" + test_int_array +
+				", test_double=" + test_double +
+				", test_double_array=" + test_double_array +
+				", test_boolean=" + test_boolean +
+				", test_boolean_array=" + test_boolean_array +
+				", inner=" + inner +
+				", inner_array=" + inner_array +
+				", not_in_json='" + not_in_json + '\'' +
+				'}';
 	}
 
 	public class TestInner {

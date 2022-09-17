@@ -2,6 +2,7 @@ package gq.glowman554.reflex.loaders;
 
 import gq.glowman554.reflex.Reflex;
 import gq.glowman554.reflex.ReflexDataLoader;
+import gq.glowman554.reflex.types.ReflexCustomArray;
 import net.shadew.json.Json;
 import net.shadew.json.JsonNode;
 import net.shadew.json.JsonSyntaxException;
@@ -55,6 +56,22 @@ public class ReflexJsonLoader implements ReflexDataLoader {
 	@Override
 	public boolean[] load_boolean_array(String field_name) {
 		return this.resolve(field_name).asBooleanArray();
+	}
+
+	@Override
+	public Object[] load_custom_array(String field, ReflexCustomArray.Instantiate instantiate) {
+		JsonNode arr = this.resolve(field);
+		Object[] o = new Object[arr.length()];
+
+		for (int i = 0; i < o.length; i++) {
+			try {
+				o[i] = new Reflex(new ReflexJsonLoader(arr.get(i))).load(instantiate.init());
+			} catch (IllegalAccessException e) {
+				throw new RuntimeException(e);
+			}
+		}
+
+		return o;
 	}
 
 	private JsonNode resolve(String field) {
