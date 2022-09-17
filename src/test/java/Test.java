@@ -33,7 +33,8 @@ public class Test {
 	// instantiated and not null
 
 	@ReflexField
-	public ReflexCustomArray inner_array = ReflexCustomArray.from(() -> new TestInner());
+	public ReflexCustomArray<TestInner> inner_array = ReflexCustomArray.from(() -> new TestInner());
+	
 	@ReflexField(optional = true)
 	public String not_in_json;
 
