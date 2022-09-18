@@ -8,6 +8,7 @@ public class CfgParser
 
 	public void parse(String s)
 	{
+		s = s.replace("\r", "");
 		String[] lines = s.split("\\n");
 		String current_section = "root";
 
