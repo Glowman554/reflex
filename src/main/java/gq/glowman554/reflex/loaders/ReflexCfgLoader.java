@@ -15,8 +15,6 @@ public class ReflexCfgLoader implements ReflexDataLoader
 	{
 		this.cfg = new CfgParser();
 		this.cfg.parse(cfg);
-
-		System.out.println(this.cfg);
 	}
 
 	public ReflexCfgLoader(CfgParser cfg)
